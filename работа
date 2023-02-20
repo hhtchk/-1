@@ -1,0 +1,26 @@
+#include <iomanip>
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+int ary[4][3];
+int main() {
+    int summ=0;
+    srand(time(0));
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 3; j++) {
+            ary[i][j] = (rand()%20-10);}
+    }
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 3; j++) {
+            if (ary[i][j]<0){
+                summ+=ary[i][j];
+            }
+        }
+    }
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 3; j++) {
+            cout<<ary[i][j]<<' ';
+        }
+    }
+    cout<<endl<<summ;
+}
