@@ -1,0 +1,34 @@
+#include <iostream>
+#include <string>
+using namespace std;
+string Cesare(string names, int k) {
+    string blocked = "";
+    for (char i : names) {
+        if (i >= 'A' and i <= 'Z') {
+            blocked += (((i - 'A') + k) % 26 + 'A');
+        }
+        else if (i >= 'a' and i <= 'z') {
+            blocked += (((i - 'a') + k) % 26 + 'a');
+        } 
+        else {
+            blocked += i;
+        }
+    }
+    return blocked;
+}
+
+int main() {
+    int k1 = 13;
+    int k2 = 6;
+    int k3 = 28;
+
+    string name = "Polina";
+    string surname = "Soboleva";
+    string surname2 = "Mikhailovna";
+
+    cout << "surname:"<<surname<<"-" << Cesare(surname, k1) << endl;
+    cout << "name:"<<name<<"-" << Cesare(name, k2) << endl;
+    cout <<"otchestvo:"<<surname2<<"-" << Cesare(surname2, k3) << endl;
+
+    return 0;
+}
