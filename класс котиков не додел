@@ -1,0 +1,54 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+class Cat{
+public:
+    int height;
+    int weight;
+    int age;
+    string name;
+    int fat;
+    vector<string> state;
+        
+    Cat(int h, float w, int a, string name){
+        height=h;
+        weight=w;
+        age=a;
+        this->name=name;
+        fat=h/w;
+        state={"isn't sleeping", "full", "is playing", "satisfied"};
+        }
+    void saymeow(){
+        cout<<"meow"<<endl;
+    }
+    float caclFood(){
+        float feed;
+        if(age>2){
+            feed=weight * 30;
+        }
+        else{
+            feed=weight * 20 * age;
+        }
+        return feed;
+    }
+    bool isHungry(int countFeed){
+        if (state[1]=="hungry"){
+            int feed = caclFood();
+            if (caclFeed > feed){
+                weight += caclFeed - feed;
+            }
+            else if(caclFeed < feed){
+                weight-=feed - calcFeed;
+            }
+            state[1]="full";
+        }
+        else{
+            weight+=
+    }          
+};
+
+
+int main(){
+    Cat Barsic(60, 4, 3, "Barsic");
+    cout<<Barsic.age;
+}
