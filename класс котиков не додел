@@ -43,7 +43,7 @@ public:
             state[1]="full";
         }
         else{
-            weight+=
+            weight+= caclFood;
     }          
 };
 
