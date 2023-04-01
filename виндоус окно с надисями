@@ -1,0 +1,109 @@
+#include <windows.h>
+
+LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+HINSTANCE _hInstance;
+int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR pCmdLine, int nCmdShow)
+{
+    const wchar_t CLASS_NAME[] = L"Sample Window Class";
+
+    WNDCLASS wc = {};
+
+    wc.lpfnWndProc = WindowProc;
+    wc.hInstance = hInstance;
+    wc.lpszClassName = CLASS_NAME;
+
+    if (!RegisterClass(&wc))
+        return 0;
+
+    HWND hwnd = CreateWindowEx(
+        0,
+        CLASS_NAME,
+        L"Simple Window",
+        WS_OVERLAPPEDWINDOW,
+        CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
+        NULL,
+        NULL,
+        hInstance,
+        NULL
+    );
+
+    if (hwnd == NULL)
+    {
+        return 0;
+    }
+
+    ShowWindow(hwnd, nCmdShow);
+
+    MSG msg = {};
+    while (GetMessage(&msg, NULL, 0, 0))
+    {
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
+    }
+
+    return 0;
+}
+
+
+LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+    switch (uMsg)
+    {
+    case WM_CREATE:
+        HWND hStatic;
+        hStatic = CreateWindowEx(
+            WS_EX_TRANSPARENT,
+            TEXT("Static"),
+            TEXT("Something text: "),
+            WS_CHILD,
+            20,
+            25,
+            90,
+            70,
+            hwnd,
+            NULL,
+            _hInstance,
+            NULL);
+        HWND hStaticEngine;
+        HWND hStaticBrowser;
+        HWND hStaticPlatform;
+        HWND hStaticVersion;
+        HWND hStaticGrade;
+
+        hStaticEngine = CreateWindowEx(WS_EX_TRANSPARENT, TEXT("Static"), TEXT("Engine: "), WS_CHILD, 20, 25, 90, 20, hwnd, NULL, _hInstance, NULL);
+        hStaticBrowser = CreateWindowEx(WS_EX_TRANSPARENT, TEXT("Static"), TEXT("Browser: "), WS_CHILD, 20, 45, 90, 20, hwnd, NULL, _hInstance, NULL);
+        hStaticPlatform = CreateWindowEx(WS_EX_TRANSPARENT, TEXT("Static"), TEXT("Platform: "), WS_CHILD, 20, 65, 90, 20, hwnd, NULL, _hInstance, NULL);
+        hStaticVersion = CreateWindowEx(WS_EX_TRANSPARENT, TEXT("Static"), TEXT("Version: "), WS_CHILD, 20, 85, 90, 20, hwnd, NULL, _hInstance, NULL);
+        hStaticGrade = CreateWindowEx(WS_EX_TRANSPARENT, TEXT("Static"), TEXT("Grade: "), WS_CHILD, 20, 105, 90, 20, hwnd, NULL, _hInstance, NULL);
+
+        ShowWindow(hStaticEngine, SW_SHOW);
+        ShowWindow(hStaticBrowser, SW_SHOW);
+        ShowWindow(hStaticPlatform, SW_SHOW);
+        ShowWindow(hStaticVersion, SW_SHOW);
+        ShowWindow(hStaticGrade, SW_SHOW);
+
+
+        UpdateWindow(hStaticEngine);
+        UpdateWindow(hStaticBrowser);
+        UpdateWindow(hStaticPlatform);
+        UpdateWindow(hStaticVersion);
+        UpdateWindow(hStaticGrade);
+        break;
+
+    case WM_DESTROY:
+        PostQuitMessage(0);
+        return 0;
+
+    case WM_PAINT:
+    {
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(hwnd, &ps);
+
+        FillRect(hdc, &ps.rcPaint, (HBRUSH)(COLOR_WINDOW + 1));
+        EndPaint(hwnd, &ps);
+    }
+    return 0;
+    }
+
+    return DefWindowProc(hwnd, uMsg, wParam, lParam);
+}
