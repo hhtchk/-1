@@ -1,0 +1,22 @@
+#include <iostream>
+#include <deque>
+#include <cstdlib>
+#include <iterator>
+using namespace std;
+
+int main(){
+    srand(time(0));
+    double summ=0;
+    deque<int>::iterator it;
+    deque<int> dq(10);
+    for (int i = 0; i < 10; i++) {
+        dq[i] = rand () % 101;
+    }
+    for  (it = dq.begin(); it != dq.end(); ++it){
+        cout<<*it<<' ';
+        
+        summ+=*it;
+    }
+    cout<<summ/10;
+    return 0;
+}
