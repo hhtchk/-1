@@ -1,0 +1,20 @@
+#include <iostream>
+#include <SFML/Graphics.hpp>
+using namespace sf;
+int main() {
+    RenderWindow window(VideoMode(640, 480), "SFML");
+    while (window.isOpen()) {
+        Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == Event::Closed)
+                window.close();
+        }
+        
+        CircleShape circle(100, 6);
+        circle.setFillColor(Color::Magenta);
+        circle.setPosition(Vector2f(window.getSize().x / 2 - circle.getRadius(), window.getSize().y / 2 - circle.getRadius()));
+        window.draw(circle);
+        window.display();
+    }
+    return 0;
+}
