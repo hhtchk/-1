@@ -13,8 +13,6 @@ int main(){
         dq[i] = rand () % 101;
     }
     for  (it = dq.begin(); it != dq.end(); ++it){
-        cout<<*it<<' ';
-        
         summ+=*it;
     }
     cout<<summ/10;
