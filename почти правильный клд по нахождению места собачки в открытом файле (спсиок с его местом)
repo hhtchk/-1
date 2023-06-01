@@ -1,1 +1,32 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <list>
+using namespace std;
+int main()
+{
+    list<int> list1;
+    fstream fileStream;
+    fileStream.open("hello.txt");
+    if (fileStream.is_open())
+    {
+        fileStream << "gpfgifdjg@fsdfgsdfdsf@ff@@dd@" << std::endl;
+    }
+    char container = '@';
+    int i = 1;
+    while (!fileStream.eof()) {
+        char c = fileStream.get();
+        if (c == container) {
+            i++;
+            list1.push_back(i);
+        }
+    }
+    fileStream.close();
+    std::cout << list1.size() << std::endl;
 
+    for (int place : list1)
+    {
+        std::cout << place << std::endl;
+    }
+    return 0;
+}
